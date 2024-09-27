@@ -21,11 +21,11 @@
 | item_name          | string     | null: false                    |
 | price              | integer    | null: false                    |
 | description        | text       | null: false                    |
-| category           | text       | null: false                    |
-| condition          | text       | null: false                    |
-| shipping_fee_payer | text       | null: false                    |
-| shipping_area      | text       | null: false                    |
-| shipping_days      | text       | null: false                    |
+| category           | string     | null: false                    |
+| condition          | string     | null: false                    |
+| shipping_fee_payer | string     | null: false                    |
+| shipping_area      | string     | null: false                    |
+| shipping_days      | string     | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
@@ -49,10 +49,10 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | postal_code   | integer    | null: false                    |
-| prefectures   | text       | null: false                    |
-| city          | text       | null: false                    |
-| street_line   | text       | null: false                    |
-| building_name | text       | null: false                    |
+| prefectures   | string     | null: false                    |
+| city          | string     | null: false                    |
+| street_line   | string     | null: false                    |
+| building_name | string     | null: false                    |
 | phone_number  | integer    | null: false                    |
 | purchase      | references | null: false, foreign_key: true |
 
