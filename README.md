@@ -18,47 +18,48 @@
 
 
 ## itemsテーブル
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| item_name          | string     | null: false                    |
-| price              | integer    | null: false                    |
-| description        | text       | null: false                    |
-| category           | integer    | numericality: , other_than: 1  |
-| condition          | integer    | numericality: , other_than: 1  |
-| shipping_fee_payer | integer    | numericality: , other_than: 1  |
-| shipping_area      | integer    | numericality: , other_than: 1  |
-| shipping_days      | integer    | numericality: , other_than: 1  |
-| user               | references | null: false, foreign_key: true |
+| Column                | Type       | Options                                       |
+| --------------------- | ---------- | --------------------------------------------- |
+| item_name             | string     | null: false                                   |
+| price                 | integer    | null: false ,numericality: {greater_than: 0 } |
+| description           | text       | null: false                                   |
+| category_id           | integer    | null: false , numericality: {other_than: 1}   |
+| condition_id          | integer    | null: false , numericality: {other_than: 1}   |
+| shipping_fee_payer_id | integer    | null: false , numericality: {other_than: 1}   |
+| shipping_area_id      | integer    | null: false , numericality: {other_than: 1}   |
+| shipping_day_id       | integer    | null: false , numericality: {other_than: 1}   |
+| user_id               | references | null: false, foreign_key: true                |
 
 ### Association
 - has_one :purchase
 - belongs_to :user
 - belongs_to  *<font color="Blue">(extend ActiveHash::Associations::ActiveRecordExtensions)</font>*
-  </br>:category , :condition, :shipping_fee_payer, :shipping_area, :shipping_days
+  </br>:category , :condition, :shipping_fee_payer, :shipping_area, :shipping_day
 - has_one_attached :image
 
 ## purchasesテーブル
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| item    | references | null: false, foreign_key: true |
-| user    | references | null: false, foreign_key: true |
-| address | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
+| user_id | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 - has_one :address
 
 ## Addressesテーブル
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| postal_code   | integer    | null: false                    |
-| prefectures   | string     | null: false                    |
-| city          | string     | null: false                    |
-| street_line   | string     | null: false                    |
-| building_name | string     |                                |
-| phone_number  | integer    | null: false                    |
-| purchase      | references | null: false, foreign_key: true |
+| Column           | Type       | Options                                     |
+| ---------------- | ---------- | ------------------------------------------- |
+| postal_code      | string     | null: false                                 |
+| shipping_area_id | integer    | null: false , numericality: {other_than: 1} |
+| city             | string     | null: false                                 |
+| street_line      | string     | null: false                                 |
+| building_name    | string     |                                             |
+| phone_number     | string     | null: false                                 |
+| purchase         | references | null: false, foreign_key: true              |
 
 ### Association
-- has_one :purchase
+- belongs_to :purchase
+- belongs_to  *<font color="Blue">(extend ActiveHash::Associations::ActiveRecordExtensions)</font>*
+  </br>:shipping_area
