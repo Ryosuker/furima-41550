@@ -18,17 +18,17 @@
 
 
 ## itemsテーブル
-| Column                | Type       | Options                                       |
-| --------------------- | ---------- | --------------------------------------------- |
-| item_name             | string     | null: false                                   |
-| price                 | integer    | null: false ,numericality: {greater_than: 0 } |
-| description           | text       | null: false                                   |
-| category_id           | integer    | null: false , numericality: {other_than: 1}   |
-| condition_id          | integer    | null: false , numericality: {other_than: 1}   |
-| shipping_fee_payer_id | integer    | null: false , numericality: {other_than: 1}   |
-| shipping_area_id      | integer    | null: false , numericality: {other_than: 1}   |
-| shipping_day_id       | integer    | null: false , numericality: {other_than: 1}   |
-| user_id               | references | null: false, foreign_key: true                |
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| item_name             | string     | null: false                    |
+| price                 | integer    | null: false                    |
+| description           | text       | null: false                    |
+| category_id           | integer    | null: false                    |
+| condition_id          | integer    | null: false                    |
+| shipping_fee_payer_id | integer    | null: false                    |
+| shipping_area_id      | integer    | null: false                    |
+| shipping_day_id       | integer    | null: false                    |
+| user                  | references | null: false, foreign_key: true |
 
 ### Association
 - has_one :purchase
@@ -40,8 +40,8 @@
 ## purchasesテーブル
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| item_id | references | null: false, foreign_key: true |
-| user_id | references | null: false, foreign_key: true |
+| item | references | null: false, foreign_key: true |
+| user | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -49,15 +49,15 @@
 - has_one :address
 
 ## Addressesテーブル
-| Column           | Type       | Options                                     |
-| ---------------- | ---------- | ------------------------------------------- |
-| postal_code      | string     | null: false                                 |
-| shipping_area_id | integer    | null: false , numericality: {other_than: 1} |
-| city             | string     | null: false                                 |
-| street_line      | string     | null: false                                 |
-| building_name    | string     |                                             |
-| phone_number     | string     | null: false                                 |
-| purchase         | references | null: false, foreign_key: true              |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| postal_code      | string     | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| city             | string     | null: false                    |
+| street_line      | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :purchase
