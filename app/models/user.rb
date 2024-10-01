@@ -7,8 +7,7 @@ class User < ApplicationRecord
   NAME_KANA_REGEX = /\A[ァ-ヶー]+\z/
   PASSSWORD_REGEX = /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/
 
-  validates :password, presence: true, length: { minimum: 6 },
-                       format: { with: PASSSWORD_REGEX, message: 'は6文字以上で、半角英字と半角数字の両方を含めてください' }
+  validates :password, format: { with: PASSSWORD_REGEX, message: 'は6文字以上で、半角英字と半角数字の両方を含めてください' }
   validates :nickname, presence: true
   validates :birthday, presence: true
   with_options presence: true, format: { with: NAME_REGEX, message: '全角文字を使用してください' } do
