@@ -25,22 +25,22 @@ RSpec.describe Item, type: :model do
       it 'priceが空では保存できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be between ¥300 and ¥9,999,999')
+        expect(@item.errors.full_messages).to include('Price must be an integer between ¥300 and ¥9,999,999')
       end
       it 'priceが300円未満では保存できない' do
         @item.price = 200
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be between ¥300 and ¥9,999,999')
+        expect(@item.errors.full_messages).to include('Price must be an integer between ¥300 and ¥9,999,999')
       end
       it 'priceが9,999,999円より大きいと保存できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be between ¥300 and ¥9,999,999')
+        expect(@item.errors.full_messages).to include('Price must be an integer between ¥300 and ¥9,999,999')
       end
       it 'priceが全角数字だと保存できない' do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be between ¥300 and ¥9,999,999')
+        expect(@item.errors.full_messages).to include('Price must be an integer between ¥300 and ¥9,999,999')
       end
 
       it 'descriptionが空では保存できない' do
