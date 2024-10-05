@@ -9,9 +9,9 @@
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <div class="sold-out">
+      <%# <div class="sold-out">
         <span>Sold Out!!</span>
-      </div>
+      </div> %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
@@ -19,7 +19,7 @@
         <%= number_to_currency(@item.price, unit:"¥", format: "%u %n", precision: 0) %>
       </span>
       <span class="item-postage">
-        <%= ShippingFeePayer.data[@item.shipping_fee_payer_id][:name]%>
+        <%= @item.shipping_fee_payer.name %>
       </span>
     </div>
 
@@ -46,23 +46,23 @@
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= Category.data[@item.category_id][:name] %></td>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= Condition.data[@item.condition_id][:name] %></td>
+          <td class="detail-value"><%= @item.condition.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= ShippingFeePayer.data[@item.shipping_fee_payer_id][:name] %></td>
+          <td class="detail-value"><%= @item.shipping_fee_payer.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= ShippingArea.data[@item.shipping_area_id][:name] %></td>
+          <td class="detail-value"><%= @item.shipping_area.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= ShippingDay.data[@item.shipping_day_id][:name] %></td>
+          <td class="detail-value"><%= @item.shipping_day.name %></td>
         </tr>
       </tbody>
     </table>
@@ -101,7 +101,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <a href="#" class="another-item"><%= Category.data[@item.category_id][:name] %>をもっと見る</a>
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>
