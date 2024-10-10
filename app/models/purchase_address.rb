@@ -1,10 +1,11 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :postal_code, :shipping_area_id, :city, :street_line, :building_name, :phone_number
+  attr_accessor :item_id, :user_id, :postal_code, :shipping_area_id, :city, :street_line, :building_name, :phone_number, :token
 
   with_options presence: true do
     validates :item_id
     validates :user_id
+    validates :token
     validates :city
     validates :street_line
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
