@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    return if Item.find(params[:id]).user == current_user
+    return if Item.find(params[:id]).user == current_user && Item.find(params[:id]).purchase.nil?
 
     redirect_to root_path
   end
