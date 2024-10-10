@@ -1,14 +1,13 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :move_to_index
+  before_action :set_item
   def index
     gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)
-    @item = Item.find(params[:item_id])
     @purchase_address = PurchaseAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
       pay_item
@@ -21,6 +20,10 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 
   def purchase_params
     params.require(:purchase_address).permit(:postal_code, :shipping_area_id, :city, :street_line, :building_name, :phone_number).merge(
