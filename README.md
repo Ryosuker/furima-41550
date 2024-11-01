@@ -101,8 +101,10 @@
 - MySQL 8.0.39 
 
 # clone
+```
 % git clone https://github.com/Ryosuker/furima-41550.git
 % cd furima-41550
 % bundle install
 % rails db:create
 % rails db:migrate
+```
