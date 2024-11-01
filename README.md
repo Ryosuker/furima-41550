@@ -96,6 +96,13 @@
 
 
 # 使用しているバージョンなど
-ruby 3.2.0
-Rails 7.0.8.4
-MySQL 8.0.39 
+- ruby 3.2.0
+- Rails 7.0.8.4
+- MySQL 8.0.39 
+
+# clone
+% git clone https://github.com/Ryosuker/furima-41550.git
+% cd furima-41550
+% bundle install
+% rails db:create
+% rails db:migrate
